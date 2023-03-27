@@ -1,0 +1,17 @@
+[package]
+name = "curve25519-scalarmult-rsjs"
+version = "0.1.0"
+license = "MIT"
+edition = "2018"
+exclude = ["index.node"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+node-bindgen = "5.1"
+curve25519-dalek = "3"
+hex = "0.4"
+
+[build-dependencies]
+node-bindgen = { version = "5.1", features = ["build"] }
