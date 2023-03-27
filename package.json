@@ -27,8 +27,8 @@
   "scripts": {
     "install": "npm run build-release",
     "postinstall": "node postinstall.js",
-    "build-debug": "rm -rf dist && nj-cli build && mv dist/index.node ./index.node",
-    "build-release": "rm -rf dist && nj-cli build --release && mv dist/index.node ./index.node",
+    "build-debug": "rm -rf dist && nj-cli build --out=.",
+    "build-release": "rm -rf dist && nj-cli build --release --out=.",
     "test": "npm run build-debug && tape test/*.js"
   }
 }
