@@ -30,6 +30,7 @@
     "postinstall": "node postinstall.js",
     "build-debug": "rm -rf dist && nj-cli build --out=.",
     "build-release": "rm -rf dist && nj-cli build --release --out=.",
-    "test": "npm run build-debug && node --test"
+    "test": "npm run build-debug && node --test",
+    "prepublishOnly": "node tools/check-prebuilds.js"
   }
 }
