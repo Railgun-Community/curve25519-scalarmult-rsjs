@@ -50,3 +50,21 @@ test('should perform scalar multiplication', (t) => {
   assert.deepEqual(actual, expected, 'should return the correct result');
   assert.deepEqual(actual, nobleActual, 'should match @noble/ed25519 result');
 });
+
+test('should throw JS error when y coordinate is invalid', (t) => {
+  const point = new Uint8Array([
+    122, 247, 122, 242, 41, 199, 22, 160, 168, 36, 83, 200, 250, 170, 208, 189,
+    116, 82, 157, 77, 82, 192, 120, 42, 62, 13, 148, 15, 17, 141, 227, 22,
+  ]);
+  const scalar = new Uint8Array([
+    12, 177, 1, 1, 172, 238, 74, 214, 245, 79, 225, 22, 8, 12, 161, 115, 116,
+    29, 107, 71, 58, 253, 193, 109, 50, 81, 18, 42, 184, 239, 251, 172,
+  ]);
+
+  assert.throws(() => {
+    nobleScalarMultiply(point, scalar);
+  }, /invalid y coordinate/);
+  assert.throws(() => {
+    mod.scalarMultiply(point, scalar);
+  }, /invalid y coordinate/);
+});

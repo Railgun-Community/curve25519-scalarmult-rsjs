@@ -13,7 +13,9 @@ fn scalarmult(
     scalar_bytes: JSArrayBuffer,
 ) -> Result<ArrayBuffer, NjError> {
     let compressed_point = CompressedEdwardsY::from_slice(point_bytes.as_bytes());
-    let inpoint = compressed_point.decompress().unwrap();
+    let inpoint = compressed_point
+        .decompress()
+        .ok_or(NjError::Other("invalid y coordinate".to_owned()))?;
 
     let mut scalar_slice = scalar_bytes.to_vec();
     scalar_slice.reverse();
