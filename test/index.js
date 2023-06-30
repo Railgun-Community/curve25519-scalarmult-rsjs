@@ -1,4 +1,5 @@
 const test = require('tape');
+const NobleEd25519 = require('@noble/ed25519');
 const mod = require('../');
 
 test('should have the correct module shape', (t) => {
@@ -12,6 +13,18 @@ test('should have the correct module shape', (t) => {
   t.equals(mod.__esModule, true, 'exports.__esModule is true');
   t.end();
 });
+
+function bytesToHex(uint8) {
+  return Array.from(uint8)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+function nobleScalarMultiply(point, scalar) {
+  const pk = NobleEd25519.Point.fromHex(bytesToHex(point));
+  const scalarBigInt = BigInt(`0x${bytesToHex(scalar)}`);
+  return pk.multiply(scalarBigInt).toRawBytes();
+}
 
 test('should perform scalar multiplication', (t) => {
   const point = new Uint8Array([
@@ -33,7 +46,9 @@ test('should perform scalar multiplication', (t) => {
   ]);
 
   const actual = mod.scalarMultiply(point, scalar);
+  const nobleActual = nobleScalarMultiply(point, scalar);
   t.deepEquals(actual, expected, 'should return the correct result');
+  t.deepEquals(actual, nobleActual, 'should match @noble/ed25519 result');
 
   t.end();
 });
