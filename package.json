@@ -23,14 +23,13 @@
     "Cargo.toml"
   ],
   "devDependencies": {
-    "@noble/ed25519": "1.7.1",
-    "tape": "^5.6.1"
+    "@noble/ed25519": "1.7.1"
   },
   "scripts": {
     "install": "npm run build-release",
     "postinstall": "node postinstall.js",
     "build-debug": "rm -rf dist && nj-cli build --out=.",
     "build-release": "rm -rf dist && nj-cli build --release --out=.",
-    "test": "npm run build-debug && tape test/*.js"
+    "test": "npm run build-debug && node --test"
   }
 }

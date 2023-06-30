@@ -1,17 +1,17 @@
-const test = require('tape');
+const test = require('node:test');
+const assert = require('node:assert');
 const NobleEd25519 = require('@noble/ed25519');
 const mod = require('../');
 
 test('should have the correct module shape', (t) => {
-  t.equals(typeof mod, 'object', 'exports is an object');
-  t.equals(typeof mod.default, 'function', 'exports.default is a function');
-  t.equals(
+  assert.equal(typeof mod, 'object', 'exports is an object');
+  assert.equal(typeof mod.default, 'function', 'exports.default is a function');
+  assert.equal(
     typeof mod.scalarMultiply,
     'function',
     'exports.scalarMultiply is a function',
   );
-  t.equals(mod.__esModule, true, 'exports.__esModule is true');
-  t.end();
+  assert.equal(mod.__esModule, true, 'exports.__esModule is true');
 });
 
 function bytesToHex(uint8) {
@@ -47,8 +47,6 @@ test('should perform scalar multiplication', (t) => {
 
   const actual = mod.scalarMultiply(point, scalar);
   const nobleActual = nobleScalarMultiply(point, scalar);
-  t.deepEquals(actual, expected, 'should return the correct result');
-  t.deepEquals(actual, nobleActual, 'should match @noble/ed25519 result');
-
-  t.end();
+  assert.deepEqual(actual, expected, 'should return the correct result');
+  assert.deepEqual(actual, nobleActual, 'should match @noble/ed25519 result');
 });
