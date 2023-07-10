@@ -68,3 +68,19 @@ test('should throw JS error when y coordinate is invalid', (t) => {
     mod.scalarMultiply(point, scalar);
   }, /invalid y coordinate/);
 });
+
+test('should throw JS error when scalar byte size is invalid', (t) => {
+  const point = new Uint8Array([
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xde, 0xad, 0xbe, 0xef,
+    0xde, 0xad, 0xbe, 0xef, 0xde, 0xad, 0xbe, 0xef,
+  ]);
+  const scalar = new Uint8Array([
+    12, 177, 1,
+  ]);
+
+  assert.throws(() => {
+    mod.scalarMultiply(point, scalar);
+  }, /invalid scalar size/);
+});
+

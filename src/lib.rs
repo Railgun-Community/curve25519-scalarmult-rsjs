@@ -7,6 +7,11 @@ use curve25519_dalek::edwards::EdwardsPoint;
 use curve25519_dalek::scalar::Scalar;
 use curve25519_dalek::traits::MultiscalarMul;
 
+fn to32(bytes: JSArrayBuffer) -> Result<[u8; 32], NjError> {
+    let bytes32: Result<[u8; 32], _> = bytes.to_vec().try_into();
+    Ok(bytes32.map_err(|_| NjError::Other("invalid scalar size".to_owned()))?)
+}
+
 #[node_bindgen]
 fn scalarmult(
     point_bytes: JSArrayBuffer,
@@ -17,9 +22,9 @@ fn scalarmult(
         .decompress()
         .ok_or(NjError::Other("invalid y coordinate".to_owned()))?;
 
-    let mut scalar_slice = scalar_bytes.to_vec();
-    scalar_slice.reverse();
-    let scalar = Scalar::from_bytes_mod_order(scalar_slice.try_into().expect("invalid"));
+    let mut scalar_bytes = to32(scalar_bytes)?;
+    scalar_bytes.reverse();
+    let scalar = Scalar::from_bytes_mod_order(scalar_bytes);
 
     let outpoint = EdwardsPoint::multiscalar_mul([scalar], [inpoint]);
     let outpoint_bytes = outpoint.compress().to_bytes();
