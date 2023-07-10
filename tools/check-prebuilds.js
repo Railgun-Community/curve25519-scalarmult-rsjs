@@ -10,7 +10,7 @@ const files = [
   ['prebuilds/ios-x64/index.node/index', 'Mach-O 64-bit x86_64'],
 ];
 
-for (const [file, expected] of files) {
+checkFiles: for (const [file, expected] of files) {
   // Check if file exists
   const parts = file.split('/');
   for (let i = 1; i < parts.length; i++) {
@@ -21,11 +21,12 @@ for (const [file, expected] of files) {
     );
     if (!fs.existsSync(partialFilename)) {
       console.error('Cannot npm publish with missing ' + file);
-      break;
+      continue checkFiles;
     }
   }
   if (!fs.existsSync(file)) {
     console.error('Cannot npm publish with missing ' + file);
+    continue checkFiles;
   }
 
   // Check if file passes ELF or Mach-O test
@@ -36,6 +37,7 @@ for (const [file, expected] of files) {
       console.error(
         `Cannot npm publish with ${file} not matching ${expected}:\n${output}`,
       );
+      continue checkFiles;
     }
   }
 }
