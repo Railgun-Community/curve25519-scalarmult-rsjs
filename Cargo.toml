@@ -14,3 +14,6 @@ curve25519-dalek = "3"
 
 [build-dependencies]
 node-bindgen = { version = "5.1", features = ["build"] }
+
+[target."cfg(windows)".build-dependencies.http_req]
+version = "0.7.2"
