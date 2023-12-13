@@ -53,15 +53,15 @@ rustup target add x86_64-linux-android
 Use Android NDK version 24 or higher by ensuring you have the env var `ANDROID_NDK_HOME` pointed at the NDK 24 directory. If you get a compilation error about `-lgcc`, you might have to apply [this hack deep in your NDK](https://stackoverflow.com/a/74041320/315752).
 
 ```
-npx prebuild-for-nodejs-mobile android-arm --sdk31 --verbose
+npx prebuild-for-nodejs-mobile android-arm --sdk33 --verbose
 ```
 
 ```
-npx prebuild-for-nodejs-mobile android-arm64 --sdk31 --verbose
+npx prebuild-for-nodejs-mobile android-arm64 --sdk33 --verbose
 ```
 
 ```
-npx prebuild-for-nodejs-mobile android-x64 --sdk31 --verbose
+npx prebuild-for-nodejs-mobile android-x64 --sdk33 --verbose
 ```
 
 ### For iOS
