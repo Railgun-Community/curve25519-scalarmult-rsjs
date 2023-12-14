@@ -84,5 +84,9 @@ npx prebuild-for-nodejs-mobile ios-arm64 --verbose
 ```
 
 ```
-npx prebuild-for-nodejs-mobile ios-x64 --verbose
+npx prebuild-for-nodejs-mobile ios-arm64-simulator --verbose
+```
+
+```
+npx prebuild-for-nodejs-mobile ios-x64-simulator --verbose
 ```
