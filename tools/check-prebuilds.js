@@ -7,7 +7,8 @@ const files = [
   ['prebuilds/android-arm64/index.node', 'ELF 64-bit ARM aarch64'],
   ['prebuilds/android-x64/index.node', 'ELF 64-bit x86-64'],
   ['prebuilds/ios-arm64/index.node/index', 'Mach-O 64-bit arm64'],
-  ['prebuilds/ios-x64/index.node/index', 'Mach-O 64-bit x86_64'],
+  ['prebuilds/ios-arm64-simulator/index.node/index', 'Mach-O 64-bit arm64'],
+  ['prebuilds/ios-x64-simulator/index.node/index', 'Mach-O 64-bit x86_64'],
 ];
 
 checkFiles: for (const [file, expected] of files) {
