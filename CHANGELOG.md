@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- iOS prebuilds for iOS *simulators* now have the correct Mach-O headers
+
 ## 0.2.2
 
 - iOS prebuilds now have correct Mach-O headers (with `LC_BUILD_VERSION`) to satisfy the App Store validation process.
