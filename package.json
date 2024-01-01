@@ -14,11 +14,11 @@
   },
   "main": "index.js",
   "files": [
-    "index.js",
-    "build.rs",
-    "postinstall.js",
+    "tools/*.js",
     "src/*",
     "prebuilds/*",
+    "build.rs",
+    "index.js",
     "Cargo.lock",
     "Cargo.toml"
   ],
