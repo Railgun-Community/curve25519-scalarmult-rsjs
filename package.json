@@ -1,6 +1,6 @@
 {
   "name": "@railgun-community/curve25519-scalarmult-rsjs",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Node.js addon for Curve25519 scalar multiplication written in Rust",
   "author": "RAILGUN Contributors",
   "license": "MIT",
