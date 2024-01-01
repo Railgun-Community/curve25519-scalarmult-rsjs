@@ -28,9 +28,9 @@
   },
   "scripts": {
     "install": "npm run build-release",
-    "postinstall": "node postinstall.js",
-    "build-debug": "rimraf dist && nj-cli build --out=.",
-    "build-release": "rimraf dist && nj-cli build --release --out=.",
+    "postinstall": "node tools/postinstall.js",
+    "build-debug": "node tools/build-debug.js",
+    "build-release": "node tools/build-release.js",
     "test": "npm run build-debug && node --test",
     "prepublishOnly": "node tools/check-prebuilds.js"
   }

@@ -14,6 +14,12 @@ $ npm install
 
 This fully installs the project, including installing any dependencies and running the build.
 
+## Compiling curve25519-scalarmult-rsjs
+
+This project is automatically compiled using Rust and [`node-bindgen`](https://github.com/infinyon/node-bindgen/) (a.k.a `nj-cli`) when you run `npm install`. If you have cloned this project and want to compile it manually, you can run `npm run build-debug` or `npm run build-release`.
+
+**If you want to disable** the automatic compilation during npm install, then set the environment variable `DONT_COMPILE_NODE_ADDON=@railgun-community/curve25519-scalarmult-rsjs` (this can be a comma-separated list of packages to skip compiling).
+
 ## Developing curve25519-scalarmult-rsjs
 
 In the project directory, you can run:
