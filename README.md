@@ -38,14 +38,16 @@ Same as `npm run build-debug` but, builds the module with the [`release`](https:
 
 Runs the unit tests.
 
-## Making prebuilds
+## Releasing new versions
+
+You must first compile "prebuilds" for Android and iOS and this may require running on a macOS computer which has iOS specific CLI tools.
 
 ### For Android
 
 Make sure you have the cross-compilation targets supported:
 
 ```
-rustup target add arm-linux-android
+rustup target add arm-linux-androideabi
 ```
 
 ```
@@ -83,6 +85,10 @@ rustup target add x86_64-apple-ios
 rustup target add aarch64-apple-ios
 ```
 
+```
+rustup target add aarch64-apple-ios-sim
+```
+
 Then compile the prebuilds:
 
 ```
@@ -95,4 +101,12 @@ npx prebuild-for-nodejs-mobile ios-arm64-simulator --verbose
 
 ```
 npx prebuild-for-nodejs-mobile ios-x64-simulator --verbose
+```
+
+### Publishing on npm
+
+When the prebuilds are ready, make sure you have rights to publish to the `@railgun-community/poseidon-hash-rsjs` npm package, and then run
+
+```
+npm publish --access public
 ```
