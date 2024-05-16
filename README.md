@@ -105,7 +105,7 @@ npx prebuild-for-nodejs-mobile ios-x64-simulator --verbose
 
 ### Publishing on npm
 
-When the prebuilds are ready, make sure you have rights to publish to the `@railgun-community/poseidon-hash-rsjs` npm package, and then run
+When the prebuilds are ready, make sure you have rights to publish to the `@railgun-community/curve25519-scalarmult-rsjs` npm package, and then run
 
 ```
 npm publish --access public
