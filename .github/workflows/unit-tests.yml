@@ -1,0 +1,21 @@
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Set up nj-cli
+        run: cargo install nj-cli
+      - run: npm install
+      - name: Test
+        run: npm test
